@@ -7,7 +7,7 @@ const app = express();
 const socket = require("socket.io");
 require("dotenv").config();
 
-app.use(cors({ origin: "https://chit-chat-app-kappa.vercel.app" }));
+app.use(cors());
 app.use(express.json());
 
 mongoose
@@ -21,7 +21,9 @@ mongoose
   .catch((err) => {
     console.log(err.message);
   });
-
+app.use("/", (req, res) => {
+  console.log("Server is running");
+});
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
