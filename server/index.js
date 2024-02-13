@@ -21,9 +21,7 @@ mongoose
   .catch((err) => {
     console.log(err.message);
   });
-app.use("/", (req, res) => {
-  console.log("Server is running");
-});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
