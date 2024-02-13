@@ -5,7 +5,6 @@ const authRoutes = require("./routes/auth");
 const messageRoutes = require("./routes/messages");
 const app = express();
 const socket = require("socket.io");
-const path = require("path");
 require("dotenv").config();
 
 // Configure CORS for Express
@@ -31,15 +30,10 @@ mongoose
     console.log(err.message);
   });
 
-const baseDir = path.resolve();
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-app.use(express.static(path.join(baseDir, "/frontend/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(baseDir, 'frontend', 'build', 'index.html'));
-});
 
 const server = app.listen(process.env.PORT, () =>
   console.log(`Server started on ${process.env.PORT}`)
