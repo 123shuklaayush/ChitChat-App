@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
 import Logo from "../assets/favicon.svg";
 import { ToastContainer, toast } from "react-toastify";
@@ -43,7 +42,7 @@ export default function Login() {
     event.preventDefault();
     if (validateForm()) {
       const { username, password } = values;
-      const { data } = await axios.post(loginRoute, {
+      const { data } = await axios.post("http://localhost:5000/api/auth/login", {
         username,
         password,
       });
