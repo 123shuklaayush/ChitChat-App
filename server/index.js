@@ -8,7 +8,15 @@ const socket = require("socket.io");
 const path = require("path");
 require("dotenv").config();
 
-app.use(cors());
+// Configure CORS for Express
+const corsOptions = {
+  origin: "https://chitchatapp-bdt6.onrender.com",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+app.use(cors(corsOptions));
+
 app.use(express.json());
 mongoose.set("strictQuery", false);
 mongoose
@@ -36,9 +44,12 @@ app.get("*", (req, res) => {
 const server = app.listen(process.env.PORT, () =>
   console.log(`Server started on ${process.env.PORT}`)
 );
+
+// Configure CORS for Socket.IO
 const io = socket(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://chitchatapp-bdt6.onrender.com",
+    methods: ["GET", "POST"],
     credentials: true,
   },
 });
