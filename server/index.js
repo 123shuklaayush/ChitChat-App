@@ -17,19 +17,20 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("DB Connetion Successfull");
+    console.log("DB Connection Successful");
   })
   .catch((err) => {
     console.log(err.message);
   });
-const __dirname = path.resolve();
+
+const baseDir = path.resolve();
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.use(express.static(path.join(baseDir, "/frontend/build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
+  res.sendFile(path.join(baseDir, 'frontend', 'build', 'index.html'));
 });
 
 const server = app.listen(process.env.PORT, () =>
