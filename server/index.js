@@ -10,7 +10,7 @@ require("dotenv").config();
 
 // Configure CORS for Express
 const corsOptions = {
-  origin: "https://chitchatapp-bdt6.onrender.com",
+  origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
@@ -48,7 +48,7 @@ const server = app.listen(process.env.PORT, () =>
 // Configure CORS for Socket.IO
 const io = socket(server, {
   cors: {
-    origin: "https://chitchatapp-bdt6.onrender.com",
+    origin: "*",
     methods: ["GET", "POST"],
     credentials: true,
   },
