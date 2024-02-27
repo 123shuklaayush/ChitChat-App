@@ -1,4 +1,4 @@
-export const host = "https://chatapp-aklk.onrender.com";
+export const host = "https://chitchat-app-42t1.onrender.com";
 export const loginRoute = `${host}/api/auth/login`;
 export const registerRoute = `${host}/api/auth/register`;
 export const logoutRoute = `${host}/api/auth/logout`;
