@@ -3,13 +3,17 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
 const messageRoutes = require("./routes/messages");
+const avatarRoutes = require("./routes/avatar");
 const app = express();
 const socket = require("socket.io");
 require("dotenv").config();
 
 // Configure CORS for Express
 const corsOptions = {
-  origin: "*",
+  origin: [
+    "http://localhost:3000",
+    "https://chatapp-topaz-seven.vercel.app"
+  ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
@@ -32,6 +36,7 @@ mongoose
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+app.use("/api/avatar", avatarRoutes);
 
 
 
@@ -42,7 +47,10 @@ const server = app.listen(process.env.PORT, () =>
 // Configure CORS for Socket.IO
 const io = socket(server, {
   cors: {
-    origin: "*",
+    origin: [
+      "http://localhost:3000",
+      "https://chatapp-topaz-seven.vercel.app"
+    ],
     methods: ["GET", "POST"],
     credentials: true,
   },
